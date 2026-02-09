@@ -3,11 +3,13 @@ const express = require('express');
 const path = require('path');
 const configViewEngine = require('./config/viewEngine');
 const webRoutes = require('./routes/web');
-const mysql = require('mysql2/promise'); // Đã sửa ở đây
+const connection = require('./config/database');
+
 
 const app = express();
 const port = process.env.PORT || 8888;
 const hostname = process.env.HOST_NAME;
+
 
 // config view engine
 configViewEngine(app);
@@ -18,19 +20,11 @@ app.use('/', webRoutes);
 // Tạo hàm async để chạy query và start server
 (async () => {
     try {
-        // Create the connection to database
-        const connection = await mysql.createConnection({
-            host: process.env.DB_HOST || 'localhost',
-            port: process.env.DB_PORT || 3308,
-            user: process.env.DB_USER || 'root',
-            password: process.env.DB_PASSWORD || '123456',
-            database: process.env.DB_NAME || 'hoidanit',
-        });
-
+        const conn = await connection;
         console.log(">>> Connected to DB successfully!");
 
         // Test query
-        const [results, fields] = await connection.query('SELECT * FROM Users');
+        const [results, fields] = await conn.query('SELECT * FROM Users');
         console.log("----results: ", results);
 
         // Chỉ start server sau khi check DB hoặc song song
