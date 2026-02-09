@@ -20,12 +20,7 @@ app.use('/', webRoutes);
 // Tạo hàm async để chạy query và start server
 (async () => {
     try {
-        const conn = await connection;
-        console.log(">>> Connected to DB successfully!");
-
-        // Test query
-        const [results, fields] = await conn.query('SELECT * FROM Users');
-        console.log("----results: ", results);
+        
 
         // Chỉ start server sau khi check DB hoặc song song
         app.listen(port, hostname, () => {
