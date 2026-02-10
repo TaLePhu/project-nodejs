@@ -14,6 +14,10 @@ const hostname = process.env.HOST_NAME;
 // config view engine
 configViewEngine(app);
 
+// config body parser to read data from req.body
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // Khai báo route
 app.use('/', webRoutes);
 
