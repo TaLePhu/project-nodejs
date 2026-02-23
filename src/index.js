@@ -16,7 +16,7 @@ configViewEngine(app);
 
 // config body parser to read data from req.body
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json()); 
 
 // Khai báo route
 app.use('/', webRoutes);
