@@ -172,3 +172,48 @@ table tr:hover {
 table tr:last-child td {
   border-bottom: none;
 }
+
+/* Action Buttons */
+.btn-update,
+.btn-delete {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 0 4px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-update {
+  background: #1d72b8;
+  color: #ffffff;
+  border: 1px solid #1d72b8;
+}
+
+.btn-update:hover {
+  background: #1663a1;
+  box-shadow: 0 4px 12px rgba(29, 114, 184, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-delete {
+  background: #dc3545;
+  color: #ffffff;
+  border: 1px solid #dc3545;
+}
+
+.btn-delete:hover {
+  background: #c82333;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-update:active,
+.btn-delete:active {
+  transform: translateY(0);
+  box-shadow: none;
+}

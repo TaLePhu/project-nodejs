@@ -1,5 +1,5 @@
 const connection = require('../config/database');
-const { getListUsers } = require('../services/CRUDService');
+const { getListUsers, getUserById, updateUser, deleteUser } = require('../services/CRUDService');
 
 const getHomePage = async (req, res) => {
 //   const { success, error } = req.query;
@@ -52,9 +52,55 @@ const getCreateUser =  async (req, res) => {
     return res.render('createUser.ejs', { success, error });
 }
 
+const getUpdateUser = async (req, res) => {
+    const { id } = req.params;
+    
+    try {
+        const user = await getUserById(id);
+        
+        if (!user) {
+            return res.redirect('/');
+        }
+        
+        return res.render('updateUser.ejs', { user });
+    } catch (error) {
+        console.error('Error fetching user:', error);
+        return res.redirect('/');
+    }
+}
+
+const postUpdateUser = async (req, res) => {
+    const { id, name, email, city } = req.body;
+    
+    try {
+        await updateUser(id, name, email, city);
+        console.log('User updated successfully with ID:', id);
+        res.redirect('/');
+    } catch (error) {
+        console.error('Error updating user:', error);
+        res.redirect('/');
+    }
+}
+
+const postDeleteUser = async (req, res) => {
+    const { id } = req.params;
+    
+    try {
+        await deleteUser(id);
+        console.log('User deleted successfully with ID:', id);
+        res.redirect('/');
+    } catch (error) {
+        console.error('Error deleting user:', error);
+        res.redirect('/');
+    }
+}
+
 module.exports = {
     getHomePage, 
     getHoiDanIT,
     postCreateUser,
-    getCreateUser
+    getCreateUser,
+    getUpdateUser,
+    postUpdateUser,
+    postDeleteUser
 };
