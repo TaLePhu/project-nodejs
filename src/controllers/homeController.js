@@ -1,8 +1,14 @@
 const connection = require('../config/database');
+const { getListUsers } = require('../services/CRUDService');
 
 const getHomePage = async (req, res) => {
-  const { success, error } = req.query;
-  return res.render('home.ejs', { success, error });
+//   const { success, error } = req.query;
+//   return res.render('home.ejs', { success, error });
+
+    let listUsers = await getListUsers();
+
+
+    return res.render('home.ejs', { result: listUsers });
 }
 
 const getHoiDanIT = (req, res) => {
@@ -15,7 +21,6 @@ const postCreateUser = async (req, res) => {
 
     console.log("name: ", name, ", email: ", email, "city: ", city);
 
-    // console.log('req body: ', req.body);
 
     try {
         // Insert vào database
@@ -36,8 +41,20 @@ const postCreateUser = async (req, res) => {
     }
 }
 
+// const getHomePage = async (req, res) => {
+//   const { success, error } = req.query;
+//   return res.render('home.ejs', { success, error });
+// }
+
+const getCreateUser =  async (req, res) => {
+    const { success, error } = req.query;
+    
+    return res.render('createUser.ejs', { success, error });
+}
+
 module.exports = {
     getHomePage, 
     getHoiDanIT,
-    postCreateUser
+    postCreateUser,
+    getCreateUser
 };

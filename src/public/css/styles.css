@@ -128,3 +128,47 @@ body {
   color: #721c24;
   border: 1px solid #f5c6cb;
 }
+
+/* Table Styles */
+table {
+  width: 100%;
+  max-width: 1000px;
+  margin: 24px auto;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(31, 41, 51, 0.12);
+}
+
+table th {
+  background: #4CAF50;
+  color: #ffffff;
+  padding: 16px 12px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+table td {
+  padding: 14px 12px;
+  text-align: center;
+  border-bottom: 1px solid #e4e7eb;
+  color: #334e68;
+  font-size: 14px;
+}
+
+table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+table tr:hover {
+  background: #f1f1f1;
+  transition: background 0.2s ease;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
